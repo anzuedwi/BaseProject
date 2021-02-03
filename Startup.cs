@@ -11,6 +11,7 @@ using BaseProject.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Runtime.InteropServices;
 
 namespace BaseProject
 {
@@ -27,8 +28,17 @@ namespace BaseProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            {
+                var isMacOS = RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
+                var connectionString = Configuration.GetConnectionString("DefaultConnection");
+
+                if (isMacOS)
+                {
+                    connectionString = Configuration.GetConnectionString("MacOSConnection");
+                }
+
+                options.UseSqlServer(connectionString);
+            });
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
