@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BaseProject.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BaseProject.Models
 {
-    public class Vehicle
+    public class Vehicle : IEntity
     {
         [Key]
         [Column("Vehicle_Id")]

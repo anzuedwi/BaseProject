@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Runtime.InteropServices;
+using BaseProject.Services;
 
 namespace BaseProject
 {
@@ -59,6 +60,9 @@ namespace BaseProject
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddScoped<UserRepository>();
+            services.AddScoped<VehicleRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
