@@ -25,10 +25,11 @@ namespace BaseProject.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<VehicleResult> Get()
+        public IEnumerable<VehicleResult> Get(string id)
         {
             var vehicleList = new List<VehicleResult>();
             var queriedList = _vehicleService.Queryable().Where(vehicle => vehicle.Year > 2000);
+            
             var sampleVehicle = new VehicleResult()
             {
                 Make = "Audi",

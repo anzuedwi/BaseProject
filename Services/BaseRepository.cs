@@ -18,6 +18,7 @@ namespace BaseProject.Services
         public BaseRepository(TContext context)
         {
             _context = context;
+            _dbSet = _context.Set<TEntity>();
         }
 
         public async Task<TEntity> Add(TEntity entity)
@@ -53,7 +54,7 @@ namespace BaseProject.Services
 
         public IQueryable<TEntity> Queryable()
         {
-            return _context.Set<TEntity>();
+            return _dbSet;
         }
 
         public async Task<TEntity> Update(TEntity entity)
